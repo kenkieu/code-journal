@@ -15,7 +15,7 @@
 </head>
 
 <body>
-  <header class="bg-purple">
+  <header class="bg-purple width-100 ">
     <div class="container">
       <div class="row">
         <div class="column-full">
@@ -31,27 +31,26 @@
           <h1>New Entry</h1>
         </div>
       </div>
-      <div class="row">
-        <div class="column-half">
-          <img src="images/placeholder-image-square.jpg" alt="user-image">
-        </div>
+      <form>
         <div class="row">
+          <div class="column-half">
+            <img src="images/placeholder-image-square.jpg" alt="user-image" class="width-100">
+          </div>
           <div class="column-half" data-view="entry-form">
-            <form>
-              <label for="title">Title</label>
-              <input required type="text" id="title" class="form-control">
-              <label for="photo-url">Photo URL</label>
-              <input required type="text" id="photo-url" class="form-control">
-            </form>
+            <label for="title">Title</label>
+            <input required type="text" id="title">
+            <label for="photo-url">Photo URL</label>
+            <input required type="text" id="photo-url">
           </div>
-        </div>
-        <div class="row">
-          <div class="column-full flex-wrap">
+          <div class="column-full" data-view="entry-form">
             <label for="notes">Notes</label>
-            <textarea required type="text" id="notes" cols="30" rows="10" class="form-control"></textarea>
+            <textarea required type="text" id="notes" cols="30" rows="10"></textarea>
+          </div>
+          <div class="column-full text-end">
+            <button type="submit" class="bg-purple btn-style">SAVE</button>
           </div>
         </div>
-      </div>
+      </form>
     </div>
   </main>
   <script src="js/data.js"></script>
