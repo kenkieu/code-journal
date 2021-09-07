@@ -1,0 +1,25 @@
+label {
+  display: block;
+}
+
+.form-control {
+  display: block;
+  width: 100%;
+}
+
+.bg-purple {
+  background-color: #4b2373;
+  color: white;
+}
+
+header {
+  width: 100%;
+}
+
+img {
+  width: 100%;
+}
+
+.flex-wrap {
+  flex-wrap: wrap;
+}
