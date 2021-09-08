@@ -36,13 +36,17 @@ function entryTemplate(entry) {
   $columnImage.setAttribute('class', 'column-half');
 
   var $userImage = document.createElement('img');
-  $userImage.setAttribute('src', '');
+  $userImage.setAttribute('src', entry.photoUrl);
+  $userImage.setAttribute('class', 'width-100');
+  $userImage.setAttribute('alt', 'user-image');
 
   var $columnContent = document.createElement('div');
   $columnContent.setAttribute('class', 'column-half');
 
   var $heading = document.createElement('h2');
+  $heading.textContent = entry.title;
   var $note = document.createElement('p');
+  $note.textContent = entry.note;
 
   $entryContainer.appendChild($row);
   $row.appendChild($columnImage);
@@ -80,3 +84,14 @@ function entryTemplate(entry) {
   </div>
 </li>
 */
+
+var $ul = document.querySelector('ul');
+
+function handleDOMContentLoaded(event) {
+  for (var i = 0; i < data.entries.length; i++) {
+    var entriesList = entryTemplate(data.entries[i]);
+    $ul.appendChild(entriesList);
+  }
+}
+
+window.addEventListener('DOMContentLoaded', handleDOMContentLoaded);
