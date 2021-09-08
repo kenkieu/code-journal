@@ -25,3 +25,31 @@ function handleSubmit(event) {
 
 var $form = document.querySelector('form');
 $form.addEventListener('submit', handleSubmit);
+
+// DOM Tree
+
+/*
+<li>
+  <div class="row">
+    <div class="column-half">
+      <img
+        src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/A_small_cup_of_coffee.JPG/1200px-A_small_cup_of_coffee.JPG"
+        alt="user-image" class="width-100">
+    </div>
+    <div class="column-half">
+      <h2>Coffee</h2>
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione dicta voluptates reprehenderit
+        alias
+        nobis atque aperiam! Nobis cumque amet molestiae dicta voluptates reprehenderit alias
+        nobis atque aperiam!</p>
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae quas odio ab harum
+        reprehenderit
+        praesentium, eaque eum placeat reiciendis repellat dicta voluptates reprehenderit alias
+        nobis atque aperiam!</p>
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae quas odio ab harum
+        reprehenderit
+        praesentium, eaque.</p>
+    </div>
+  </div>
+</li>
+*/

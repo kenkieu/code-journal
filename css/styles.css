@@ -57,3 +57,13 @@ img {
 .med-text {
   font-size: 1.2rem;
 }
+
+/* Temp */
+ul {
+  padding: 0;
+  list-style: none;
+}
+
+li {
+  margin-bottom: 2rem;
+}
