@@ -26,8 +26,35 @@ function handleSubmit(event) {
 var $form = document.querySelector('form');
 $form.addEventListener('submit', handleSubmit);
 
-// DOM Tree
+function entryTemplate(entry) {
+  var $entryContainer = document.createElement('li');
 
+  var $row = document.createElement('div');
+  $row.setAttribute('class', 'row');
+
+  var $columnImage = document.createElement('div');
+  $columnImage.setAttribute('class', 'column-half');
+
+  var $userImage = document.createElement('img');
+  $userImage.setAttribute('src', '');
+
+  var $columnContent = document.createElement('div');
+  $columnContent.setAttribute('class', 'column-half');
+
+  var $heading = document.createElement('h2');
+  var $note = document.createElement('p');
+
+  $entryContainer.appendChild($row);
+  $row.appendChild($columnImage);
+  $columnImage.appendChild($userImage);
+  $row.appendChild($columnContent);
+  $columnContent.appendChild($heading);
+  $columnContent.appendChild($note);
+
+  return $entryContainer;
+}
+
+// DOM Tree
 /*
 <li>
   <div class="row">
