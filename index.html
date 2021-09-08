@@ -1,25 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Code Journal</title>
   <link rel="icon" href="images/favicon.ico">
-  <link
-    rel="stylesheet"
-    crossorigin="anonymous"
+  <link rel="stylesheet" crossorigin="anonymous"
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
     integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==">
   <link rel="stylesheet" href="css/reset.css">
   <link rel="stylesheet" href="css/layout.css">
   <link rel="stylesheet" href="css/styles.css">
 </head>
+
 <body>
-  <header>
+  <header class="bg-purple width-100">
+    <div class="container">
+      <div class="row">
+        <div class="column-full">
+          <h2>Code Journal</h2>
+        </div>
+      </div>
+    </div>
   </header>
   <main>
+    <div class="container">
+      <div class="row">
+        <div class="column-full">
+          <h1>New Entry</h1>
+        </div>
+      </div>
+      <form>
+        <div class="row" data-view="entry-form">
+          <div class="column-half">
+            <img src="images/placeholder-image-square.jpg" alt="user-image" class="width-100">
+          </div>
+          <div class="column-half">
+            <label for="title" class="bold med-text">Title</label>
+            <input required type="text" id="title" name="title">
+            <label for="photo-url" class="bold med-text">Photo URL</label>
+            <input required type="text" id="photo-url" name="photourl">
+          </div>
+          <div class="column-full">
+            <label for="notes" class="bold med-text">Notes</label>
+            <textarea required type="text" id="notes" cols="30" rows="10" name="notes"></textarea>
+          </div>
+          <div class="column-full text-end">
+            <button type="submit" class="bg-purple btn-style">SAVE</button>
+          </div>
+        </div>
+      </form>
+    </div>
   </main>
   <script src="js/data.js"></script>
   <script src="js/main.js"></script>
 </body>
+
 </html>
