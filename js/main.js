@@ -29,6 +29,9 @@ function handleSubmit(event) {
   $form.elements[0].value = '';
   $form.elements[1].value = '';
   $form.elements[2].value = '';
+
+  var entryJSON = JSON.stringify(entry);
+  localStorage.setItem('entry', entryJSON);
 }
 
 $form.addEventListener('submit', handleSubmit);
