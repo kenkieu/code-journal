@@ -7,13 +7,8 @@ function handlePhoto(event) {
 }
 
 var $photoUrl = document.querySelector('#photo-url');
-// var $title = document.querySelector('#title');
-// var $notes = document.querySelector('#notes');
 var $img = document.querySelector('img');
 $photoUrl.addEventListener('input', handlePhoto);
-
-var $form = document.querySelector('form');
-// console.dir($form);
 
 function handleSubmit(event) {
   event.preventDefault();
@@ -22,18 +17,13 @@ function handleSubmit(event) {
   entry.photoUrl = $form.elements[1].value;
   entry.note = $form.elements[2].value;
   entry.entryId = data.nextEntryId;
-  // console.log(entry);
   data.nextEntryId++;
   data.entries.unshift(entry);
   $img.setAttribute('src', 'images/placeholder-image-square.jpg');
   $form.elements[0].value = '';
   $form.elements[1].value = '';
   $form.elements[2].value = '';
-
-  var entryJSON = JSON.stringify(entry);
-  localStorage.setItem('entry', entryJSON);
 }
 
+var $form = document.querySelector('form');
 $form.addEventListener('submit', handleSubmit);
-// console.dir($form.elements);
-// console.log();
