@@ -6,9 +6,14 @@ var data = {
   nextEntryId: 1
 };
 
-function handleBeforeUnload(){
+var previousDataJSON = localStorage.getItem('entryList');
+if (previousDataJSON !== null) {
+  data = JSON.parse(previousDataJSON);
+}
+
+function handleBeforeUnload() {
   var dataJSON = JSON.stringify(data);
   localStorage.setItem('entryList', dataJSON);
 }
 
-window.addEventListener('beforeunload', handleBeforeUnload)
+window.addEventListener('beforeunload', handleBeforeUnload);
