@@ -12,6 +12,7 @@ if (previousDataJSON !== null) {
 }
 
 function handleBeforeUnload() {
+  // debugger;
   var dataJSON = JSON.stringify(data);
   localStorage.setItem('entryList', dataJSON);
 }

@@ -23,14 +23,33 @@ function handleSubmit(event) {
   var instantEntry = entryTemplate(data.entries[0]);
   $ul.prepend(instantEntry);
   $form.reset();
-  switchView($entriesPage.getAttribute('data-view'));
-  data.view = 'entries';
+  switchView('entries');
 }
 
 var $form = document.querySelector('form');
 $form.addEventListener('submit', handleSubmit);
 
 function entryTemplate(entry) {
+
+  /*
+  <li>
+    <div class="row">
+      <div class="column-half">
+        <img
+          src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/A_small_cup_of_coffee.JPG/1200px-A_small_cup_of_coffee.JPG"
+          alt="user-image" class="width-100">
+      </div>
+      <div class="column-half">
+        <h2>Coffee</h2>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione dicta voluptates reprehenderit
+          alias
+          nobis atque aperiam! Nobis cumque amet molestiae dicta voluptates reprehenderit alias
+          nobis atque aperiam!</p>
+      </div>
+    </div>
+  </li>
+  */
+
   var $entryContainer = document.createElement('li');
   var $row = document.createElement('div');
 
@@ -62,25 +81,6 @@ function entryTemplate(entry) {
   return $entryContainer;
 }
 
-/*
-<li>
-  <div class="row">
-    <div class="column-half">
-      <img
-        src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/A_small_cup_of_coffee.JPG/1200px-A_small_cup_of_coffee.JPG"
-        alt="user-image" class="width-100">
-    </div>
-    <div class="column-half">
-      <h2>Coffee</h2>
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione dicta voluptates reprehenderit
-        alias
-        nobis atque aperiam! Nobis cumque amet molestiae dicta voluptates reprehenderit alias
-        nobis atque aperiam!</p>
-    </div>
-  </div>
-</li>
-*/
-
 var $ul = document.querySelector('ul');
 
 function handleDOMContentLoaded(event) {
@@ -88,6 +88,7 @@ function handleDOMContentLoaded(event) {
     var entriesList = entryTemplate(data.entries[i]);
     $ul.appendChild(entriesList);
   }
+  switchView(data.view);
 }
 
 window.addEventListener('DOMContentLoaded', handleDOMContentLoaded);
@@ -102,6 +103,7 @@ function switchView(string) {
   for (var i = 0; i < $view.length; i++) {
     if ($view[i].dataset.view === string) {
       $view[i].classList.remove('hidden');
+      data.view = $view[i].dataset.view;
     } else {
       $view[i].classList.add('hidden');
     }
@@ -117,5 +119,3 @@ $newBtn.addEventListener('click', function (event) {
   switchView($formPage.getAttribute('data-view'));
   data.view = 'entry-form';
 });
-
-switchView(data.view);
