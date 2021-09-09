@@ -21,6 +21,7 @@ function handleSubmit(event) {
   data.entries.unshift(entry);
   $img.setAttribute('src', 'images/placeholder-image-square.jpg');
   $form.reset();
+  switchView($entriesPage.getAttribute("data-view"))
 }
 
 var $form = document.querySelector('form');
@@ -28,8 +29,8 @@ $form.addEventListener('submit', handleSubmit);
 
 function entryTemplate(entry) {
   var $entryContainer = document.createElement('li');
-
   var $row = document.createElement('div');
+
   $row.setAttribute('class', 'row');
 
   var $columnImage = document.createElement('div');
@@ -58,7 +59,6 @@ function entryTemplate(entry) {
   return $entryContainer;
 }
 
-// DOM Tree
 /*
 <li>
   <div class="row">
@@ -73,13 +73,6 @@ function entryTemplate(entry) {
         alias
         nobis atque aperiam! Nobis cumque amet molestiae dicta voluptates reprehenderit alias
         nobis atque aperiam!</p>
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae quas odio ab harum
-        reprehenderit
-        praesentium, eaque eum placeat reiciendis repellat dicta voluptates reprehenderit alias
-        nobis atque aperiam!</p>
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae quas odio ab harum
-        reprehenderit
-        praesentium, eaque.</p>
     </div>
   </div>
 </li>
@@ -91,21 +84,32 @@ function handleDOMContentLoaded(event) {
   for (var i = 0; i < data.entries.length; i++) {
     var entriesList = entryTemplate(data.entries[i]);
     $ul.appendChild(entriesList);
+
   }
 }
 
 window.addEventListener('DOMContentLoaded', handleDOMContentLoaded);
 
-// Hiding
-var $new = document.querySelector('#new-btn');
+var $entriesPage = document.querySelector(".entries-page")
+var $entries = document.querySelector('.entries-link')
+var $newBtn = document.querySelector('.new-btn')
+var $view = document.querySelectorAll('.view');
+var $formPage = document.querySelector(".form-page")
 
-function handleClick(event) {
-  if (event.target.matches($new)) {
-
+function switchView(string){
+  for(var i = 0; i < $view.length; i++){
+    if($view[i].dataset.view === string) {
+      $view[i].classList.remove('hidden')
+    } else {
+      $view[i].classList.add('hidden')
+    }
   }
 }
 
-// View switching switchView single parameter string name of entry you want to switch to
-// cehck view
-// if yes show it
-// if no hide it
+$entries.addEventListener("click", function(event){
+  switchView($entriesPage.getAttribute("data-view"));
+})
+
+$newBtn.addEventListener("click", function(event){
+  switchView($formPage.getAttribute("data-view"));
+})
