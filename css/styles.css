@@ -1,14 +1,20 @@
 body {
   background-color: #f0f0f0;
-  font-family: 'Roboto', sans-serif;
+  font-family: 'open sans', sans-serif;
   letter-spacing: 0.04rem;
 }
 
-header h2,
-header {
+header,
+.logo,
+.entries {
   font-weight: 400;
   background-color: #4b2373;
   color: white;
+}
+
+h1,
+h2 {
+  font-family: 'Proza Libre', sans-serif;
 }
 
 input,
@@ -32,11 +38,11 @@ img {
 
 .btn-style {
   border-radius: 4px;
-  padding: 0.55rem 1.2rem;
+  padding: 0.6rem 1rem;
   border-style: none;
   background-color: #4b2373;
   color: white;
-  font-family: 'Roboto', sans-serif;
+  font-family: 'open sans', sans-serif;
   font-size: 1.1rem;
   letter-spacing: 0.04rem;
   margin-bottom: 1.5rem;
@@ -58,7 +64,6 @@ img {
   font-size: 1.2rem;
 }
 
-/* Temp */
 ul {
   padding: 0;
   list-style: none;
@@ -66,4 +71,28 @@ ul {
 
 li {
   margin-bottom: 2rem;
+}
+
+.inline-block {
+  display: inline-block;
+}
+
+.entries {
+  text-decoration: none;
+  margin-left: 1.5rem;
+  font-size: 1.2rem;
+}
+
+h1 + a {
+  text-decoration: none;
+}
+
+.justify-between {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.column-full > h1 + button {
+  margin-top: 1rem;
 }
