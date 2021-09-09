@@ -20,8 +20,11 @@ function handleSubmit(event) {
   data.nextEntryId++;
   data.entries.unshift(entry);
   $img.setAttribute('src', 'images/placeholder-image-square.jpg');
+  var instantEntry = entryTemplate(data.entries[0]);
+  $ul.prepend(instantEntry);
   $form.reset();
-  switchView($entriesPage.getAttribute("data-view"))
+  switchView($entriesPage.getAttribute('data-view'));
+  data.view = 'entries';
 }
 
 var $form = document.querySelector('form');
@@ -84,32 +87,35 @@ function handleDOMContentLoaded(event) {
   for (var i = 0; i < data.entries.length; i++) {
     var entriesList = entryTemplate(data.entries[i]);
     $ul.appendChild(entriesList);
-
   }
 }
 
 window.addEventListener('DOMContentLoaded', handleDOMContentLoaded);
 
-var $entriesPage = document.querySelector(".entries-page")
-var $entries = document.querySelector('.entries-link')
-var $newBtn = document.querySelector('.new-btn')
+var $entriesPage = document.querySelector('.entries-page');
+var $entries = document.querySelector('.entries-link');
+var $newBtn = document.querySelector('.new-btn');
 var $view = document.querySelectorAll('.view');
-var $formPage = document.querySelector(".form-page")
+var $formPage = document.querySelector('.form-page');
 
-function switchView(string){
-  for(var i = 0; i < $view.length; i++){
-    if($view[i].dataset.view === string) {
-      $view[i].classList.remove('hidden')
+function switchView(string) {
+  for (var i = 0; i < $view.length; i++) {
+    if ($view[i].dataset.view === string) {
+      $view[i].classList.remove('hidden');
     } else {
-      $view[i].classList.add('hidden')
+      $view[i].classList.add('hidden');
     }
   }
 }
 
-$entries.addEventListener("click", function(event){
-  switchView($entriesPage.getAttribute("data-view"));
-})
+$entries.addEventListener('click', function (event) {
+  switchView($entriesPage.getAttribute('data-view'));
+  data.view = 'entries';
+});
 
-$newBtn.addEventListener("click", function(event){
-  switchView($formPage.getAttribute("data-view"));
-})
+$newBtn.addEventListener('click', function (event) {
+  switchView($formPage.getAttribute('data-view'));
+  data.view = 'entry-form';
+});
+
+switchView(data.view);
