@@ -95,3 +95,17 @@ function handleDOMContentLoaded(event) {
 }
 
 window.addEventListener('DOMContentLoaded', handleDOMContentLoaded);
+
+// Hiding
+var $new = document.querySelector('#new-btn');
+
+function handleClick(event) {
+  if (event.target.matches($new)) {
+
+  }
+}
+
+// View switching switchView single parameter string name of entry you want to switch to
+// cehck view
+// if yes show it
+// if no hide it
