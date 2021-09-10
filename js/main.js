@@ -29,8 +29,6 @@ function handleSubmit(event) {
 var $form = document.querySelector('form');
 $form.addEventListener('submit', handleSubmit);
 
-var $ul = document.querySelector('ul');
-
 function entryTemplate(entry) {
   // <li>
   //   <div class="row">
@@ -94,6 +92,8 @@ function entryTemplate(entry) {
   return $entryContainer;
 }
 
+var $ul = document.querySelector('ul');
+
 function handleDOMContentLoaded(event) {
   for (var i = 0; i < data.entries.length; i++) {
     var entriesList = entryTemplate(data.entries[i]);
@@ -108,6 +108,16 @@ function handleDOMContentLoaded(event) {
 }
 
 window.addEventListener('DOMContentLoaded', handleDOMContentLoaded);
+
+function handleEditButton(event){
+  if(event.target.matches("i")){
+  switchView($formPage.getAttribute('data-view'));
+  data.view = 'entry-form';
+  }
+}
+
+$ul.addEventListener('click', handleEditButton)
+
 
 var $entriesPage = document.querySelector('.entries-page');
 var $entries = document.querySelector('.entries-link');
