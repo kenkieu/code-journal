@@ -29,8 +29,10 @@ function handleSubmit(event) {
 var $form = document.querySelector('form');
 $form.addEventListener('submit', handleSubmit);
 
-function entryTemplate(entry) {
+var $ul = document.querySelector('ul');
+var $entryContainer = document.createElement('li');
 
+function entryTemplate(entry) {
   // <li>
   //   <div class="row">
   //     <div class="column-half">
@@ -55,7 +57,6 @@ function entryTemplate(entry) {
   //   </div>
   // </li>
 
-  var $entryContainer = document.createElement('li');
   var $row = document.createElement('div');
   var $columnImage = document.createElement('div');
   var $userImage = document.createElement('img');
@@ -93,14 +94,24 @@ function entryTemplate(entry) {
   return $entryContainer;
 }
 
-var $ul = document.querySelector('ul');
-
 function handleDOMContentLoaded(event) {
   for (var i = 0; i < data.entries.length; i++) {
     var entriesList = entryTemplate(data.entries[i]);
     $ul.appendChild(entriesList);
   }
   switchView(data.view);
+
+  // Redo li for each entry
+  // var $li = document.querySelectorAll('li');
+
+  // for (var i = 0; i < $li.length; i++) {
+  //   console.log($li.length);
+  // }
+
+  // for (var i = 0; i < data.entries.length; i++) {
+  // console.log($entryContainer);
+  // $entryContainer[i].setAttribute('data-entry-id', data.entries[i].entryId);
+  // }
 }
 
 window.addEventListener('DOMContentLoaded', handleDOMContentLoaded);
