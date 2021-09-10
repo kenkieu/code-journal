@@ -99,6 +99,9 @@ h1 + a {
 
 i {
   font-size: 1.5rem;
+  color: #884fc0;
+}
+
+i:hover {
   color: #4b2373;
-  padding: 0 2rem;
 }

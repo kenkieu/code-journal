@@ -1,15 +1,19 @@
 /* global data */
 /* exported data */
 
+var $photoUrl = document.querySelector('#photo-url');
+var $img = document.querySelector('img');
+var $ul = document.querySelector('ul');
+var $li = document.getElementsByTagName('li');
+var $form = document.querySelector('form');
+var $entryTypeHeading = document.querySelector('.entry-type');
+
 function handlePhoto(event) {
   var userUrl = event.target.value;
   $img.setAttribute('src', userUrl);
 }
 
-var $photoUrl = document.querySelector('#photo-url');
-var $img = document.querySelector('img');
 $photoUrl.addEventListener('input', handlePhoto);
-var $li = document.getElementsByTagName('li');
 
 function handleSubmit(event) {
   event.preventDefault();
@@ -42,8 +46,6 @@ function handleSubmit(event) {
     switchView('entries');
   }
 }
-
-var $form = document.querySelector('form');
 $form.addEventListener('submit', handleSubmit);
 
 function entryTemplate(entry) {
@@ -110,20 +112,14 @@ function entryTemplate(entry) {
   return $entryContainer;
 }
 
-var $ul = document.querySelector('ul');
-
 function handleDOMContentLoaded(event) {
   for (var i = 0; i < data.entries.length; i++) {
     var entriesList = entryTemplate(data.entries[i]);
     $ul.appendChild(entriesList);
   }
   switchView(data.view);
-
-  // var $li = document.querySelectorAll('li');
-
   for (var x = 0; x < $li.length; x++) {
     $li[x].setAttribute('data-entry-id', data.entries[x].entryId);
-
   }
 }
 
@@ -139,6 +135,7 @@ function handleEditButton(event) {
         data.editing = data.entries[i];
       }
     }
+    $entryTypeHeading.textContent = 'Edit Entry';
     $form.elements.title.value = data.editing.title;
     $form.elements.photourl.value = data.editing.photoUrl;
     $form.elements.notes.value = data.editing.note;
@@ -148,11 +145,11 @@ function handleEditButton(event) {
 
 $ul.addEventListener('click', handleEditButton);
 
-var $entriesPage = document.querySelector('.entries-page');
+// var $entriesPage = document.querySelector('.entries-page');
 var $entries = document.querySelector('.entries-link');
 var $newBtn = document.querySelector('.new-btn');
 var $view = document.querySelectorAll('.view');
-var $formPage = document.querySelector('.form-page');
+// var $formPage = document.querySelector('.form-page');
 
 function switchView(string) {
   for (var i = 0; i < $view.length; i++) {
@@ -165,12 +162,15 @@ function switchView(string) {
   }
 }
 
-$entries.addEventListener('click', function (event) {
-  switchView($entriesPage.getAttribute('data-view'));
-  data.view = 'entries';
-});
+$entries.addEventListener('click', handleSwap);
 
-$newBtn.addEventListener('click', function (event) {
-  switchView($formPage.getAttribute('data-view'));
-  data.view = 'entry-form';
-});
+$newBtn.addEventListener('click', handleSwap);
+
+function handleSwap(event) {
+  var entryAttr = event.target.getAttribute('data-view');
+  data.view = entryAttr;
+  switchView(entryAttr);
+  if (entryAttr === 'entry-form') {
+    $entryTypeHeading.textContent = 'New Entry';
+  }
+}
