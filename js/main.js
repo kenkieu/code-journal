@@ -120,7 +120,10 @@ function handleEditButton(event) {
         data.editing = data.entries[i];
       }
     }
-    // console.log(data.editing);
+    $form.elements.title.value = data.editing.title;
+    $form.elements.photourl.value = data.editing.photoUrl;
+    $form.elements.notes.value = data.editing.note;
+    $img.setAttribute('src', $form.elements.photourl.value);
   }
 }
 
