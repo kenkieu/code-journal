@@ -96,3 +96,9 @@ h1 + a {
 .column-full > h1 + button {
   margin-top: 1rem;
 }
+
+i {
+  font-size: 1.5rem;
+  color: #4b2373;
+  padding: 0 2rem;
+}

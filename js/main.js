@@ -31,52 +31,64 @@ $form.addEventListener('submit', handleSubmit);
 
 function entryTemplate(entry) {
 
-  /*
-  <li>
-    <div class="row">
-      <div class="column-half">
-        <img
-          src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/A_small_cup_of_coffee.JPG/1200px-A_small_cup_of_coffee.JPG"
-          alt="user-image" class="width-100">
-      </div>
-      <div class="column-half">
-        <h2>Coffee</h2>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione dicta voluptates reprehenderit
-          alias
-          nobis atque aperiam! Nobis cumque amet molestiae dicta voluptates reprehenderit alias
-          nobis atque aperiam!</p>
-      </div>
-    </div>
-  </li>
-  */
+  // <li>
+  //   <div class="row">
+  //     <div class="column-half">
+  //       <img
+  //         src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/A_small_cup_of_coffee.JPG/1200px-A_small_cup_of_coffee.JPG"
+  //         alt="user-image" class="width-100">
+  //     </div>
+  //     <div class="column-half">
+  //       <div class="row">
+  //         <div class="column-full justify-between">
+  //           <h2>Coffee</h2>
+  //           <i class="fas fa-pencil-alt"></i>
+  //         </div>
+  //         <div class="column-full">
+  //           <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione dicta voluptates reprehenderit
+  //             alias
+  //             nobis atque aperiam! Nobis cumque amet molestiae dicta voluptates reprehenderit alias
+  //             nobis atque aperiam!</p>
+  //         </div>
+  //       </div>
+  //     </div>
+  //   </div>
+  // </li>
 
   var $entryContainer = document.createElement('li');
   var $row = document.createElement('div');
-
-  $row.setAttribute('class', 'row');
-
   var $columnImage = document.createElement('div');
-  $columnImage.setAttribute('class', 'column-half');
-
   var $userImage = document.createElement('img');
-  $userImage.setAttribute('src', entry.photoUrl);
-  $userImage.setAttribute('class', 'width-100');
-  $userImage.setAttribute('alt', 'user-image');
-
   var $columnContent = document.createElement('div');
-  $columnContent.setAttribute('class', 'column-half');
-
+  var $columnHead = document.createElement('div');
+  var $columnNote = document.createElement('div');
   var $heading = document.createElement('h2');
-  $heading.textContent = entry.title;
+  var $icon = document.createElement('i');
+  var $subRow = document.createElement('row');
   var $note = document.createElement('p');
-  $note.textContent = entry.note;
 
   $entryContainer.appendChild($row);
   $row.appendChild($columnImage);
   $columnImage.appendChild($userImage);
   $row.appendChild($columnContent);
-  $columnContent.appendChild($heading);
-  $columnContent.appendChild($note);
+  $columnContent.appendChild($subRow);
+  $subRow.appendChild($columnHead);
+  $columnHead.appendChild($heading);
+  $columnHead.appendChild($icon);
+  $subRow.appendChild($columnNote);
+  $columnNote.appendChild($note);
+
+  $row.setAttribute('class', 'row');
+  $columnImage.setAttribute('class', 'column-half');
+  $userImage.setAttribute('src', entry.photoUrl);
+  $userImage.setAttribute('class', 'width-100');
+  $userImage.setAttribute('alt', 'user-image');
+  $columnContent.setAttribute('class', 'column-half');
+  $columnHead.setAttribute('class', 'column-full justify-between');
+  $heading.textContent = entry.title;
+  $icon.setAttribute('class', 'fas fa-pencil-alt');
+  $columnNote.setAttribute('class', 'column-full');
+  $note.textContent = entry.note;
 
   return $entryContainer;
 }
