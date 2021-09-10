@@ -30,7 +30,6 @@ var $form = document.querySelector('form');
 $form.addEventListener('submit', handleSubmit);
 
 var $ul = document.querySelector('ul');
-var $entryContainer = document.createElement('li');
 
 function entryTemplate(entry) {
   // <li>
@@ -57,6 +56,7 @@ function entryTemplate(entry) {
   //   </div>
   // </li>
 
+  var $entryContainer = document.createElement('li');
   var $row = document.createElement('div');
   var $columnImage = document.createElement('div');
   var $userImage = document.createElement('img');
@@ -101,17 +101,10 @@ function handleDOMContentLoaded(event) {
   }
   switchView(data.view);
 
-  // Redo li for each entry
-  // var $li = document.querySelectorAll('li');
-
-  // for (var i = 0; i < $li.length; i++) {
-  //   console.log($li.length);
-  // }
-
-  // for (var i = 0; i < data.entries.length; i++) {
-  // console.log($entryContainer);
-  // $entryContainer[i].setAttribute('data-entry-id', data.entries[i].entryId);
-  // }
+  var $li = document.querySelectorAll('li');
+  for (var i = 0; i < $li.length; i++) {
+    $li[i].setAttribute('data-entry-id', data.entries[i].entryId)
+  }
 }
 
 window.addEventListener('DOMContentLoaded', handleDOMContentLoaded);
