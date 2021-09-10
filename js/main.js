@@ -9,21 +9,38 @@ function handlePhoto(event) {
 var $photoUrl = document.querySelector('#photo-url');
 var $img = document.querySelector('img');
 $photoUrl.addEventListener('input', handlePhoto);
+var $li = document.getElementsByTagName('li');
 
 function handleSubmit(event) {
   event.preventDefault();
   var entry = {};
-  entry.title = $form.elements.title.value;
-  entry.photoUrl = $form.elements.photourl.value;
-  entry.note = $form.elements.notes.value;
-  entry.entryId = data.nextEntryId;
-  data.nextEntryId++;
-  data.entries.unshift(entry);
-  $img.setAttribute('src', 'images/placeholder-image-square.jpg');
-  var instantEntry = entryTemplate(data.entries[0]);
-  $ul.prepend(instantEntry);
-  $form.reset();
-  switchView('entries');
+  if (data.editing === null) {
+    entry.title = $form.elements.title.value;
+    entry.photoUrl = $form.elements.photourl.value;
+    entry.note = $form.elements.notes.value;
+    entry.entryId = data.nextEntryId;
+    data.nextEntryId++;
+    data.entries.unshift(entry);
+    $img.setAttribute('src', 'images/placeholder-image-square.jpg');
+    var instantEntry = entryTemplate(data.entries[0]);
+    $ul.prepend(instantEntry);
+    $form.reset();
+    switchView('entries');
+  } else {
+    data.editing.title = $form.elements.title.value;
+    data.editing.photoUrl = $form.elements.photourl.value;
+    data.editing.note = $form.elements.notes.value;
+    $img.setAttribute('src', 'images/placeholder-image-square.jpg');
+    for (var i = 0; i < $li.length; i++) {
+      var entryNumber = Number($li[i].getAttribute('data-entry-id'));
+      if (entryNumber === data.editing.entryId) {
+        $li[i].replaceWith(entryTemplate(data.editing));
+      }
+    }
+    $form.reset();
+    data.editing = null;
+    switchView('entries');
+  }
 }
 
 var $form = document.querySelector('form');
@@ -102,9 +119,11 @@ function handleDOMContentLoaded(event) {
   }
   switchView(data.view);
 
-  var $li = document.querySelectorAll('li');
+  // var $li = document.querySelectorAll('li');
+
   for (var x = 0; x < $li.length; x++) {
     $li[x].setAttribute('data-entry-id', data.entries[x].entryId);
+
   }
 }
 
