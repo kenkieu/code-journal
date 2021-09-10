@@ -3,12 +3,12 @@
 
 function handlePhoto(event) {
   var userUrl = event.target.value;
-  $img.setAttribute('src', userUrl);
+  $img.setAttribute("src", userUrl);
 }
 
-var $photoUrl = document.querySelector('#photo-url');
-var $img = document.querySelector('img');
-$photoUrl.addEventListener('input', handlePhoto);
+var $photoUrl = document.querySelector("#photo-url");
+var $img = document.querySelector("img");
+$photoUrl.addEventListener("input", handlePhoto);
 
 function handleSubmit(event) {
   event.preventDefault();
@@ -19,15 +19,15 @@ function handleSubmit(event) {
   entry.entryId = data.nextEntryId;
   data.nextEntryId++;
   data.entries.unshift(entry);
-  $img.setAttribute('src', 'images/placeholder-image-square.jpg');
+  $img.setAttribute("src", "images/placeholder-image-square.jpg");
   var instantEntry = entryTemplate(data.entries[0]);
   $ul.prepend(instantEntry);
   $form.reset();
-  switchView('entries');
+  switchView("entries");
 }
 
-var $form = document.querySelector('form');
-$form.addEventListener('submit', handleSubmit);
+var $form = document.querySelector("form");
+$form.addEventListener("submit", handleSubmit);
 
 function entryTemplate(entry) {
   // <li>
@@ -54,17 +54,17 @@ function entryTemplate(entry) {
   //   </div>
   // </li>
 
-  var $entryContainer = document.createElement('li');
-  var $row = document.createElement('div');
-  var $columnImage = document.createElement('div');
-  var $userImage = document.createElement('img');
-  var $columnContent = document.createElement('div');
-  var $columnHead = document.createElement('div');
-  var $columnNote = document.createElement('div');
-  var $heading = document.createElement('h2');
-  var $icon = document.createElement('i');
-  var $subRow = document.createElement('row');
-  var $note = document.createElement('p');
+  var $entryContainer = document.createElement("li");
+  var $row = document.createElement("div");
+  var $columnImage = document.createElement("div");
+  var $userImage = document.createElement("img");
+  var $columnContent = document.createElement("div");
+  var $columnHead = document.createElement("div");
+  var $columnNote = document.createElement("div");
+  var $heading = document.createElement("h2");
+  var $icon = document.createElement("i");
+  var $subRow = document.createElement("row");
+  var $note = document.createElement("p");
 
   $entryContainer.appendChild($row);
   $row.appendChild($columnImage);
@@ -77,22 +77,23 @@ function entryTemplate(entry) {
   $subRow.appendChild($columnNote);
   $columnNote.appendChild($note);
 
-  $row.setAttribute('class', 'row');
-  $columnImage.setAttribute('class', 'column-half');
-  $userImage.setAttribute('src', entry.photoUrl);
-  $userImage.setAttribute('class', 'width-100');
-  $userImage.setAttribute('alt', 'user-image');
-  $columnContent.setAttribute('class', 'column-half');
-  $columnHead.setAttribute('class', 'column-full justify-between');
+  $row.setAttribute("class", "row");
+  $columnImage.setAttribute("class", "column-half");
+  $userImage.setAttribute("src", entry.photoUrl);
+  $userImage.setAttribute("class", "width-100");
+  $userImage.setAttribute("alt", "user-image");
+  $columnContent.setAttribute("class", "column-half");
+  $columnHead.setAttribute("class", "column-full justify-between");
   $heading.textContent = entry.title;
-  $icon.setAttribute('class', 'fas fa-pencil-alt');
-  $columnNote.setAttribute('class', 'column-full');
+  $icon.setAttribute("class", "fas fa-pencil-alt");
+  $icon.setAttribute("data-entry-id", entry.entryId);
+  $columnNote.setAttribute("class", "column-full");
   $note.textContent = entry.note;
 
   return $entryContainer;
 }
 
-var $ul = document.querySelector('ul');
+var $ul = document.querySelector("ul");
 
 function handleDOMContentLoaded(event) {
   for (var i = 0; i < data.entries.length; i++) {
@@ -101,47 +102,54 @@ function handleDOMContentLoaded(event) {
   }
   switchView(data.view);
 
-  var $li = document.querySelectorAll('li');
-  for (var i = 0; i < $li.length; i++) {
-    $li[i].setAttribute('data-entry-id', data.entries[i].entryId)
-  }
+  // var $li = document.querySelectorAll('li');
+  // for (var i = 0; i < $li.length; i++) {
+  //   $li[i].setAttribute('data-entry-id', data.entries[i].entryId)
+  // }
 }
 
-window.addEventListener('DOMContentLoaded', handleDOMContentLoaded);
+window.addEventListener("DOMContentLoaded", handleDOMContentLoaded);
 
-function handleEditButton(event){
-  if(event.target.matches("i")){
-  switchView($formPage.getAttribute('data-view'));
-  data.view = 'entry-form';
-  }
-}
+console.log(data.entries);
+function handleEditButton(event, entry) {
+  if (event.target.matches("i")) {
+    switchView("entry-form");
 
-$ul.addEventListener('click', handleEditButton)
-
-
-var $entriesPage = document.querySelector('.entries-page');
-var $entries = document.querySelector('.entries-link');
-var $newBtn = document.querySelector('.new-btn');
-var $view = document.querySelectorAll('.view');
-var $formPage = document.querySelector('.form-page');
-
-function switchView(string) {
-  for (var i = 0; i < $view.length; i++) {
-    if ($view[i].dataset.view === string) {
-      $view[i].classList.remove('hidden');
-      data.view = $view[i].dataset.view;
-    } else {
-      $view[i].classList.add('hidden');
+    for (var i = 0; i < data.entries.length; i++) {
+      if (
+        entry.entries[i].entryId === event.target.getAttribute("data-entry-id")
+      ) {
+        // data.editing = data.entries[i];
+      }
     }
   }
 }
 
-$entries.addEventListener('click', function (event) {
-  switchView($entriesPage.getAttribute('data-view'));
-  data.view = 'entries';
+$ul.addEventListener("click", handleEditButton);
+
+var $entriesPage = document.querySelector(".entries-page");
+var $entries = document.querySelector(".entries-link");
+var $newBtn = document.querySelector(".new-btn");
+var $view = document.querySelectorAll(".view");
+var $formPage = document.querySelector(".form-page");
+
+function switchView(string) {
+  for (var i = 0; i < $view.length; i++) {
+    if ($view[i].dataset.view === string) {
+      $view[i].classList.remove("hidden");
+      data.view = $view[i].dataset.view;
+    } else {
+      $view[i].classList.add("hidden");
+    }
+  }
+}
+
+$entries.addEventListener("click", function (event) {
+  switchView($entriesPage.getAttribute("data-view"));
+  data.view = "entries";
 });
 
-$newBtn.addEventListener('click', function (event) {
-  switchView($formPage.getAttribute('data-view'));
-  data.view = 'entry-form';
+$newBtn.addEventListener("click", function (event) {
+  switchView($formPage.getAttribute("data-view"));
+  data.view = "entry-form";
 });
