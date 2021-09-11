@@ -35,15 +35,19 @@
     </header>
     <main>
       <div class="container">
-        <div class="row flex-center">
+        <div class="row flex-center hidden" id="modal-container">
           <div class="column-half modal-style">
             <p class="text-center pad-one-rem bold">
               Are you sure you want to delete this entry?
             </p>
             <div class="row modal-btn-padding">
               <div class="column-full justify-between">
-                <a href="#" class="btn-style cancel-link">CANCEL</a>
-                <a href="#" class="btn-style confirm-link">CONFIRM</a>
+                <a href="#" class="btn-style cancel-link" id="cancel-link"
+                  >CANCEL</a
+                >
+                <a href="#" class="btn-style confirm-link" id="confirm-link"
+                  >CONFIRM</a
+                >
               </div>
             </div>
           </div>

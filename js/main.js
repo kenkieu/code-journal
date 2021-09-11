@@ -171,3 +171,28 @@ function handleSwap(event) {
     $deleteLink.classList.add("visiblity-hidden");
   }
 }
+
+var modalOpen = false;
+var $modalContainer = document.querySelector("#modal-container");
+var $cancelLink = document.querySelector("#cancel-link");
+var $confirmLink = document.querySelector("#confirm-link");
+function handleDeleteModal(event) {
+  console.log(event.target);
+  if (modalOpen === false) {
+    $modalContainer.classList.remove("hidden");
+    modalOpen = true;
+  }
+}
+
+$deleteLink.addEventListener("click", handleDeleteModal);
+
+function handleCancelModal(event) {
+  if (modalOpen === true) {
+    $modalContainer.classList.add("hidden");
+    modalOpen = false;
+  }
+}
+$cancelLink.addEventListener("click", handleCancelModal);
+
+// function handleConfirmModal(event) {}
+// $confirmLink.addEventListener("click", handleConfirmModal);
