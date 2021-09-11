@@ -24,17 +24,17 @@
       <div class="row">
         <div class="column-full">
           <h2 class="inline-block logo">Code Journal</h2>
-          <a href="#" class="entries-link">Entries</a>
+          <a href="#" class="entries-link" data-view="entries">Entries</a>
         </div>
       </div>
     </div>
   </header>
   <main>
     <div class="container">
-      <form>
-        <div class="row view form-page" data-view="entry-form">
+      <form class="view" data-view="entry-form">
+        <div class="row form-page">
           <div class="column-full">
-            <h1>New Entry</h1>
+            <h1 class="entry-type">New Entry</h1>
           </div>
           <div class="column-half">
             <img src="images/placeholder-image-square.jpg" alt="user-image" class="width-100">
@@ -53,16 +53,15 @@
             <button class="bg-purple btn-style">SAVE</button>
           </div>
         </div>
-
-        <div class="entries-page row view hidden" data-view="entries">
-          <div class="column-full justify-between">
-            <h1>Entries</h1>
-            <button class="btn-style new-btn">NEW</button>
-          </div>
-          <ul>
-          </ul>
-        </div>
       </form>
+      <div class="entries-page row view hidden" data-view="entries">
+        <div class="column-full justify-between">
+          <h1>Entries</h1>
+          <button class="btn-style new-btn" data-view="entry-form">NEW</button>
+        </div>
+        <ul>
+        </ul>
+      </div>
     </div>
   </main>
   <script src="js/data.js"></script>
