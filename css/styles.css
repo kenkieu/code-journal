@@ -1,20 +1,19 @@
 body {
   background-color: #f0f0f0;
-  font-family: 'open sans', sans-serif;
-  letter-spacing: 0.04rem;
+  font-family: "open sans", sans-serif;
 }
 
 header,
 .logo,
 .entries-link {
   font-weight: 400;
-  background-color: #4b2373;
+  background-color: #562b81;
   color: white;
 }
 
 h1,
 h2 {
-  font-family: 'Proza Libre', sans-serif;
+  font-family: "Proza Libre", sans-serif;
 }
 
 input,
@@ -29,7 +28,7 @@ textarea {
 
 input:focus,
 textarea:focus {
-  outline-color: #4b2373;
+  outline-color: #562b81;
 }
 
 img {
@@ -40,12 +39,36 @@ img {
   border-radius: 4px;
   padding: 0.6rem 1rem;
   border-style: none;
-  background-color: #4b2373;
-  color: white;
-  font-family: 'open sans', sans-serif;
+  background-color: #562b81;
+  color: #ffffff;
+  font-family: "open sans", sans-serif;
   font-size: 1.1rem;
-  letter-spacing: 0.04rem;
-  margin-bottom: 1.5rem;
+}
+
+.cancel-link {
+  background-color: #b6b6b6;
+  color: black;
+  text-decoration: none;
+}
+
+.confirm-link {
+  background-color: #dc2626;
+  color: #ffffff;
+  text-decoration: none;
+}
+
+.modal-style {
+  background-color: #ffffff;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+.pad-one-rem {
+  padding: 1rem 0;
+}
+
+.modal-btn-padding {
+  padding: 1rem;
 }
 
 .bold {
@@ -93,8 +116,13 @@ h1 + a {
   align-items: center;
 }
 
-.column-full > h1 + button {
-  margin-top: 1rem;
+.flex-center {
+  justify-content: center;
+  align-items: center;
+}
+
+.text-center {
+  text-align: center;
 }
 
 i {
@@ -103,5 +131,54 @@ i {
 }
 
 i:hover {
-  color: #4b2373;
+  color: #562b81;
+}
+
+.delete-entry,
+.delete-entry:visited {
+  color: #dc2626;
+}
+
+.visiblity-hidden {
+  visibility: hidden;
+}
+
+@media screen and (max-width: 768px) {
+  .pad-one-rem {
+    padding: 1rem;
+  }
+
+  .modal-btn-padding {
+    padding: 1rem 2.5rem;
+  }
+
+  .modal-style {
+    background-color: #ffffff;
+    border-radius: 4px;
+    font-size: 1rem;
+    width: 80%;
+  }
+}
+
+@media screen and (max-width: 414px) {
+  .modal-btn-padding {
+    padding: 1rem;
+  }
+
+  .cancel-link {
+    width: 80px;
+    font-size: 0.65rem;
+  }
+
+  .confirm-link {
+    width: 80px;
+    font-size: 0.65rem;
+  }
+
+  .modal-style {
+    background-color: #ffffff;
+    border-radius: 4px;
+    font-size: 1rem;
+    width: 80%;
+  }
 }
