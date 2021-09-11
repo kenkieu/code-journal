@@ -112,6 +112,10 @@ function entryTemplate(entry) {
   $columnNote.setAttribute('class', 'column-full');
   $note.textContent = entry.note;
 
+  for (var x = 0; x < $li.length; x++) {
+    $li[x].setAttribute('data-entry-id', data.entries[x].entryId);
+  }
+
   return $entryContainer;
 }
 
@@ -121,9 +125,6 @@ function handleDOMContentLoaded(event) {
     $ul.appendChild(entriesList);
   }
   switchView(data.view);
-  for (var x = 0; x < $li.length; x++) {
-    $li[x].setAttribute('data-entry-id', data.entries[x].entryId);
-  }
 }
 
 window.addEventListener('DOMContentLoaded', handleDOMContentLoaded);
