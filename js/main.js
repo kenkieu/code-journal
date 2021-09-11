@@ -193,7 +193,6 @@ function handleHideModal(event) {
 }
 $cancelLink.addEventListener("click", handleHideModal);
 
-//length - entryId? = [index]
 function handleConfirmModal(event) {
   for (var i = 0; i < data.entries.length; i++) {
     if (data.editing.entryId === data.entries[i].entryId) {
@@ -204,7 +203,6 @@ function handleConfirmModal(event) {
   }
   data.editing = null;
   handleHideModal();
-
   switchView("entries");
 }
 $confirmLink.addEventListener("click", handleConfirmModal);
