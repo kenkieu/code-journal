@@ -99,6 +99,7 @@ function entryTemplate(entry) {
   $subRow.appendChild($columnNote);
   $columnNote.appendChild($note);
 
+  $entryContainer.setAttribute('data-entry-id', entry.entryId);
   $row.setAttribute('class', 'row');
   $columnImage.setAttribute('class', 'column-half');
   $userImage.setAttribute('src', entry.photoUrl);
@@ -111,10 +112,6 @@ function entryTemplate(entry) {
   $icon.setAttribute('data-entry-id', entry.entryId);
   $columnNote.setAttribute('class', 'column-full');
   $note.textContent = entry.note;
-
-  for (var x = 0; x < $li.length; x++) {
-    $li[x].setAttribute('data-entry-id', data.entries[x].entryId);
-  }
 
   return $entryContainer;
 }
