@@ -20,8 +20,6 @@ function handlePhoto(event) {
   $img.setAttribute('src', userUrl);
 }
 
-$photoUrl.addEventListener('input', handlePhoto);
-
 function handleSubmit(event) {
   event.preventDefault();
   var entry = {};
@@ -53,7 +51,6 @@ function handleSubmit(event) {
     switchView('entries');
   }
 }
-$form.addEventListener('submit', handleSubmit);
 
 function entryTemplate(entry) {
   // <li>
@@ -128,8 +125,6 @@ function handleDOMContentLoaded(event) {
   switchView(data.view);
 }
 
-window.addEventListener('DOMContentLoaded', handleDOMContentLoaded);
-
 function handleEditButton(event) {
   if (event.target.matches('i')) {
     switchView('entry-form');
@@ -149,7 +144,6 @@ function handleEditButton(event) {
   }
 }
 
-$ul.addEventListener('click', handleEditButton);
 
 function switchView(string) {
   for (var i = 0; i < $view.length; i++) {
@@ -162,8 +156,6 @@ function switchView(string) {
   }
 }
 
-$entries.addEventListener('click', handleSwap);
-$newBtn.addEventListener('click', handleSwap);
 
 function handleSwap(event) {
   var entryAttr = event.target.getAttribute('data-view');
@@ -183,15 +175,12 @@ function handleDeleteModal(event) {
   }
 }
 
-$deleteLink.addEventListener('click', handleDeleteModal);
-
 function handleHideModal(event) {
   if (modalOpen === true) {
     $modalContainer.classList.add('hidden');
     modalOpen = false;
   }
 }
-$cancelLink.addEventListener('click', handleHideModal);
 
 function handleConfirmModal(event) {
   for (var i = 0; i < data.entries.length; i++) {
@@ -205,4 +194,13 @@ function handleConfirmModal(event) {
   handleHideModal();
   switchView('entries');
 }
+
+$photoUrl.addEventListener('input', handlePhoto);
+$form.addEventListener('submit', handleSubmit);
+window.addEventListener('DOMContentLoaded', handleDOMContentLoaded);
+$ul.addEventListener('click', handleEditButton);
+$entries.addEventListener('click', handleSwap);
+$newBtn.addEventListener('click', handleSwap);
+$deleteLink.addEventListener('click', handleDeleteModal);
+$cancelLink.addEventListener('click', handleHideModal);
 $confirmLink.addEventListener('click', handleConfirmModal);
