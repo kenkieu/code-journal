@@ -177,7 +177,6 @@ var $modalContainer = document.querySelector("#modal-container");
 var $cancelLink = document.querySelector("#cancel-link");
 var $confirmLink = document.querySelector("#confirm-link");
 function handleDeleteModal(event) {
-  console.log(event.target);
   if (modalOpen === false) {
     $modalContainer.classList.remove("hidden");
     modalOpen = true;
@@ -186,13 +185,26 @@ function handleDeleteModal(event) {
 
 $deleteLink.addEventListener("click", handleDeleteModal);
 
-function handleCancelModal(event) {
+function handleHideModal(event) {
   if (modalOpen === true) {
     $modalContainer.classList.add("hidden");
     modalOpen = false;
   }
 }
-$cancelLink.addEventListener("click", handleCancelModal);
+$cancelLink.addEventListener("click", handleHideModal);
 
-// function handleConfirmModal(event) {}
-// $confirmLink.addEventListener("click", handleConfirmModal);
+//length - entryId? = [index]
+function handleConfirmModal(event) {
+  for (var i = 0; i < data.entries.length; i++) {
+    if (data.editing.entryId === data.entries[i].entryId) {
+      data.entries.splice(i, 1);
+      var $entryToDelete = document.querySelector("[data-entry-id]");
+      $entryToDelete.remove();
+    }
+  }
+  data.editing = null;
+  handleHideModal();
+
+  switchView("entries");
+}
+$confirmLink.addEventListener("click", handleConfirmModal);
