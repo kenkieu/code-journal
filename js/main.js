@@ -7,6 +7,9 @@ var $ul = document.querySelector('ul');
 var $li = document.getElementsByTagName('li');
 var $form = document.querySelector('form');
 var $entryTypeHeading = document.querySelector('.entry-type');
+var $entries = document.querySelector('.entries-link');
+var $newBtn = document.querySelector('.new-btn');
+var $view = document.querySelectorAll('.view');
 
 function handlePhoto(event) {
   var userUrl = event.target.value;
@@ -145,12 +148,6 @@ function handleEditButton(event) {
 
 $ul.addEventListener('click', handleEditButton);
 
-// var $entriesPage = document.querySelector('.entries-page');
-var $entries = document.querySelector('.entries-link');
-var $newBtn = document.querySelector('.new-btn');
-var $view = document.querySelectorAll('.view');
-// var $formPage = document.querySelector('.form-page');
-
 function switchView(string) {
   for (var i = 0; i < $view.length; i++) {
     if ($view[i].dataset.view === string) {
@@ -163,7 +160,6 @@ function switchView(string) {
 }
 
 $entries.addEventListener('click', handleSwap);
-
 $newBtn.addEventListener('click', handleSwap);
 
 function handleSwap(event) {
