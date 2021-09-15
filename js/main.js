@@ -186,8 +186,14 @@ function handleConfirmModal(event) {
   for (var i = 0; i < data.entries.length; i++) {
     if (data.editing.entryId === data.entries[i].entryId) {
       data.entries.splice(i, 1);
-      var $entryToDelete = document.querySelector('[data-entry-id]');
-      $entryToDelete.remove();
+    }
+  }
+  var $entryList = document.querySelectorAll('[data-entry-id]');
+  for (var i = 0; i < $entryList.length; i++) {
+    var $entryNumber = Number($entryList[i].dataset.entryId)
+
+    if ($entryNumber === data.editing.entryId) {
+      $entryList[i].remove();
     }
   }
   data.editing = null;
