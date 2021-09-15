@@ -1,20 +1,19 @@
 body {
   background-color: #f0f0f0;
-  font-family: 'open sans', sans-serif;
-  letter-spacing: 0.04rem;
+  font-family: "open sans", sans-serif;
 }
 
 header,
 .logo,
 .entries-link {
   font-weight: 400;
-  background-color: #4b2373;
+  background-color: #562b81;
   color: white;
 }
 
 h1,
 h2 {
-  font-family: 'Proza Libre', sans-serif;
+  font-family: "Proza Libre", sans-serif;
 }
 
 input,
@@ -29,23 +28,68 @@ textarea {
 
 input:focus,
 textarea:focus {
-  outline-color: #4b2373;
+  outline-color: #562b81;
 }
 
 img {
   margin-bottom: 1.5rem;
 }
 
+i {
+  font-size: 1.5rem;
+  color: #884fc0;
+}
+
+i:hover {
+  color: #562b81;
+}
+
+ul {
+  padding: 0;
+  list-style: none;
+}
+
+li {
+  margin-bottom: 2rem;
+}
+
 .btn-style {
   border-radius: 4px;
   padding: 0.6rem 1rem;
   border-style: none;
-  background-color: #4b2373;
-  color: white;
-  font-family: 'open sans', sans-serif;
+  background-color: #562b81;
+  color: #fff;
+  font-family: "open sans", sans-serif;
   font-size: 1.1rem;
-  letter-spacing: 0.04rem;
-  margin-bottom: 1.5rem;
+}
+
+.cancel-link {
+  background-color: #b6b6b6;
+  color: black;
+  text-decoration: none;
+  padding: 0.5rem;
+}
+
+.confirm-link {
+  background-color: #dc2626;
+  color: #fff;
+  text-decoration: none;
+  padding: 0.5rem;
+}
+
+.modal-style {
+  background-color: #fff;
+  border-radius: 4px;
+  font-size: 1rem;
+  width: 400px;
+}
+
+.pad-one-rem {
+  padding: 1rem 0;
+}
+
+.modal-btn-padding {
+  padding: 1rem 2rem;
 }
 
 .bold {
@@ -62,15 +106,6 @@ img {
 
 .med-text {
   font-size: 1.2rem;
-}
-
-ul {
-  padding: 0;
-  list-style: none;
-}
-
-li {
-  margin-bottom: 2rem;
 }
 
 .inline-block {
@@ -93,15 +128,51 @@ h1 + a {
   align-items: center;
 }
 
-.column-full > h1 + button {
-  margin-top: 1rem;
+.flex-center {
+  justify-content: center;
+  align-items: center;
 }
 
-i {
-  font-size: 1.5rem;
-  color: #884fc0;
+.text-center {
+  text-align: center;
 }
 
-i:hover {
-  color: #4b2373;
+.delete-entry,
+.delete-entry:visited {
+  color: #dc2626;
+}
+
+.visiblity-hidden {
+  visibility: hidden;
+}
+
+.bg-modal {
+  position: fixed;
+  top: 0%;
+  left: 0%;
+  right: 0%;
+  background-color: rgba(0, 0, 0, 0.75);
+  height: 100vh;
+}
+
+.pad-reset {
+  padding: 0;
+}
+
+@media screen and (max-width: 512px) {
+  .modal-style {
+    background-color: #fff;
+    border-radius: 4px;
+    width: 78%;
+  }
+}
+
+@media screen and (min-width: 512px) and (max-width: 768px) {
+  .cancel-link {
+    margin-left: 0.79rem;
+  }
+
+  .confirm-link {
+    margin-right: 0.79rem;
+  }
 }

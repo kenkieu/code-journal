@@ -10,13 +10,15 @@ var $entryTypeHeading = document.querySelector('.entry-type');
 var $entries = document.querySelector('.entries-link');
 var $newBtn = document.querySelector('.new-btn');
 var $view = document.querySelectorAll('.view');
+var $deleteLink = document.querySelector('.delete-entry');
+var $modalContainer = document.querySelector('#modal-container');
+var $cancelLink = document.querySelector('#cancel-link');
+var $confirmLink = document.querySelector('#confirm-link');
 
 function handlePhoto(event) {
   var userUrl = event.target.value;
   $img.setAttribute('src', userUrl);
 }
-
-$photoUrl.addEventListener('input', handlePhoto);
 
 function handleSubmit(event) {
   event.preventDefault();
@@ -49,7 +51,6 @@ function handleSubmit(event) {
     switchView('entries');
   }
 }
-$form.addEventListener('submit', handleSubmit);
 
 function entryTemplate(entry) {
   // <li>
@@ -124,8 +125,6 @@ function handleDOMContentLoaded(event) {
   switchView(data.view);
 }
 
-window.addEventListener('DOMContentLoaded', handleDOMContentLoaded);
-
 function handleEditButton(event) {
   if (event.target.matches('i')) {
     switchView('entry-form');
@@ -137,6 +136,7 @@ function handleEditButton(event) {
       }
     }
     $entryTypeHeading.textContent = 'Edit Entry';
+    $deleteLink.classList.remove('visiblity-hidden');
     $form.elements.title.value = data.editing.title;
     $form.elements.photourl.value = data.editing.photoUrl;
     $form.elements.notes.value = data.editing.note;
@@ -144,7 +144,6 @@ function handleEditButton(event) {
   }
 }
 
-$ul.addEventListener('click', handleEditButton);
 
 function switchView(string) {
   for (var i = 0; i < $view.length; i++) {
@@ -157,8 +156,6 @@ function switchView(string) {
   }
 }
 
-$entries.addEventListener('click', handleSwap);
-$newBtn.addEventListener('click', handleSwap);
 
 function handleSwap(event) {
   var entryAttr = event.target.getAttribute('data-view');
@@ -166,5 +163,50 @@ function handleSwap(event) {
   switchView(entryAttr);
   if (entryAttr === 'entry-form') {
     $entryTypeHeading.textContent = 'New Entry';
+    $deleteLink.classList.add('visiblity-hidden');
   }
 }
+
+var modalOpen = false;
+function handleDeleteModal(event) {
+  if (modalOpen === false) {
+    $modalContainer.classList.remove('hidden');
+    modalOpen = true;
+  }
+}
+
+function handleHideModal(event) {
+  if (modalOpen === true) {
+    $modalContainer.classList.add('hidden');
+    modalOpen = false;
+  }
+}
+
+function handleConfirmModal(event) {
+  for (var i = 0; i < data.entries.length; i++) {
+    if (data.editing.entryId === data.entries[i].entryId) {
+      data.entries.splice(i, 1);
+    }
+  }
+  var $entryList = document.querySelectorAll('[data-entry-id]');
+  for (var i = 0; i < $entryList.length; i++) {
+    var $entryNumber = Number($entryList[i].dataset.entryId)
+
+    if ($entryNumber === data.editing.entryId) {
+      $entryList[i].remove();
+    }
+  }
+  data.editing = null;
+  handleHideModal();
+  switchView('entries');
+}
+
+$photoUrl.addEventListener('input', handlePhoto);
+$form.addEventListener('submit', handleSubmit);
+window.addEventListener('DOMContentLoaded', handleDOMContentLoaded);
+$ul.addEventListener('click', handleEditButton);
+$entries.addEventListener('click', handleSwap);
+$newBtn.addEventListener('click', handleSwap);
+$deleteLink.addEventListener('click', handleDeleteModal);
+$cancelLink.addEventListener('click', handleHideModal);
+$confirmLink.addEventListener('click', handleConfirmModal);
